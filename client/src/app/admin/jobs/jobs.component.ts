@@ -35,7 +35,7 @@ export class JobsComponent implements OnInit {
   }
   getJobs() {
     this.jobsService.jobs().pipe().subscribe(data => {
-      if (data.lenght > 10) {
+      if (data.length > 5) {
         this.pagination = true;
       }
       this.loading = false;
