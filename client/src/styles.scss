@@ -1,0 +1,169 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+html,
+body {
+    height: 100%;
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.mat-nav-list a,
+.my-table,
+.mat-form-field,
+button {
+    font-family: 'Quicksand', sans-serif!important;
+}
+
+.vh-center {
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    top: 50%;
+    width: 656px;
+    max-width: 100%;
+    left: 50%;
+    position: absolute;
+}
+
+.text-center {
+    text-align: center
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.layout {
+    padding: 30px;
+    @media (max-width: 812px) {
+        padding: 20px;
+    }
+}
+
+.fill-space {
+    flex: 1 1 auto;
+}
+
+.page-heading {
+    font-size: 22px;
+    color: #F48C00;
+    font-weight: 700;
+    @media (max-width: 600px) {
+        margin-bottom: 20px;
+        margin-top: 0;
+        width: 100%;
+    }
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.table-haed-set {
+    .mat-form-field-appearance-legacy {
+        .mat-form-field-infix {
+            padding: 0 0 5px 0;
+            width: 180px;
+            @media (max-width: 768px) {
+                width: 130px;
+            }
+        }
+    }
+}
+
+.btn-default {
+    background-color: #EE8A00;
+    color: #fff;
+}
+
+.btn-cancel {
+    background-color: #083679;
+    color: #fff;
+}
+
+.btn-create {
+    background-color: #32AF4F;
+    color: #fff;
+}
+
+.btn-run {
+    background-color: #32AF4F;
+    color: #fff;
+    padding: 5px;
+}
+
+.mr20 {
+    margin-right: 20px!important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    top: 20px;
+}
+
+.mat-form-field-label-wrapper {
+    top: -.84375em;
+    padding-top: .84375em;
+}
+
+input.mat-input-element {
+    margin-top: 0;
+    height: 20px;
+    padding: 5px;
+}
+
+.mat-form-field-infix {
+    border-top: 0 solid transparent;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.my-table {
+    border: 1px solid #EFEFEF;
+    font-size: 16px;
+    .mat-header-cell {
+        font-size: 16px;
+    }
+    tr:nth-child(even) {
+        background-color: #fbfbfb;
+    }
+    tbody {
+        tr:hover {
+            background-color: #fafafa
+        }
+    }
+    thead {
+        tr {
+            background-color: #F2F2F2;
+            th {
+                color: #000;
+            }
+        }
+    }
+}
+
+.clearfix {
+    clear: both;
+}
+
+.row {
+    display: flex
+}
+
+.table-set {
+    overflow: auto;
+    width: 100%;
+}

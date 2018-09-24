@@ -1,0 +1,41 @@
+<div class="grid-container">
+    <div class="grid-item login-bg mobile-hide">
+        <div class="vh-center">
+            <div class="login-text">We help retailers and brands improve their pricing performance and compete more profitably through data science & analytics.</div>
+        </div>
+    </div>
+    <div class="grid-item login-section">
+        <div class="login-set vh-center">
+            <div class="login-logo"><img src="/assets/images/engage3-etl.png" /></div>
+            <div class="login-logo-txt">Welcome, please login to continue...</div>
+            <form name="loginform" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+                <div class="form-group">
+                    <mat-form-field>
+                        <input type="text" matInput placeholder="User name" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.username.errors" class="error-msg">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <mat-form-field>
+                        <input type="password" matInput placeholder="Password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    </mat-form-field>
+                    <div *ngIf="submitted && f.password.errors" class="error-msg">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button mat-button [disabled]="loading">Login</button>
+                </div>
+                <div *ngIf="message?.text" [ngClass]="{ 'error-msg': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+                    {{message.text}}
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,41 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
+    @media (max-width: 768px) {
+        grid-template-columns: auto;
+    }
+}
+
+.grid-item {
+    background: #fff;
+    .mat-form-field {
+        width: 100%;
+    }
+    @media (max-width: 768px) {
+        height: 70px;
+    }
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    .btn {
+        border: 0;
+        color: #8b8b8b;
+        background-color: white;
+        padding: 8px 20px 11px 0;
+        border-radius: 0;
+        font-size: 17px;
+        border-bottom: 1px solid #a8a8a8;
+        width: 100%;
+        text-align: left;
+    }
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+}

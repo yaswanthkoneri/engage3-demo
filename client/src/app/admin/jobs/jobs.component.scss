@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0;
+}
+
+input.mat-input-element {
+    width: 80%;
+}
+
+.my-table {
+    .mat-button {
+        font-size: 13px;
+        padding: 0;
+        height: 30px;
+        line-height: 12px;
+        .material-icons {
+            width: 8px;
+            height: 13px;
+            font-size: 14px;
+        }
+    }
+}

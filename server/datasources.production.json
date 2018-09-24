@@ -1,0 +1,12 @@
+{
+    "db": {
+    "name": "db",
+    "connector": "postgresql",
+    "host": "stampy.db.elephantsql.com",
+    "port": 5432,
+    "database": "acampsuz",
+    "username": "acampsuz",
+    "password": "A0domwbbWSKAVFPllblJvF2ChV3UFfij"
+    }
+  }
+  

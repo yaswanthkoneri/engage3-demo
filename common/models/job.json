@@ -1,0 +1,28 @@
+{
+  "name": "job",
+  "plural": "jobs",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "no_of_input_records": {
+      "type": "number"
+    },
+    "no_of_output_records": {
+      "type": "number"
+    },
+    "no_of_error_records": {
+      "type": "number"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

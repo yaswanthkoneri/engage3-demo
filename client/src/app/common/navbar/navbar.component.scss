@@ -1,0 +1,64 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 240px;
+    background-color: #083679;
+    box-shadow: 2px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    a {
+        color: #fff
+    }
+    .mat-icon {
+        color: #8ea3c1
+    }
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+}
+
+.fill-space {
+    flex: 1 1 auto
+}
+
+.sidebar-logo {
+    padding: 0!important;
+    background-color: #022454;
+    height: 82px;
+    text-align: center
+}
+
+.header {
+    height: 82px;
+    background-color: #fff;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.mat-drawer-content {
+    background-color: #fff;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+    padding: 0 30px;
+    @media (max-width: 812px) {
+        padding: 0 10px;
+    }
+}
+
+.mat-nav-list {
+    padding-top: 0;
+    .active {
+        background-color: #052F6B
+    }
+}
+
+.engage-logo {
+    img {
+        @media (max-width: 812px) {
+            width: 160px;
+        }
+    }
+}
