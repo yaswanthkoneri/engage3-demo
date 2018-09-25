@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { JobsService } from '../../../services/jobs/jobs.service';
 @Component({
   selector: 'app-create-job',
@@ -12,13 +12,28 @@ export class CreateJobComponent implements OnInit {
   formData: FormData = new FormData();
   fileName: String ;
   fileDetails: any;
-  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService) { }
+  jobId: any;
+  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService, private route: ActivatedRoute) { 
+    this.route.params.subscribe( params => {
+      if (params) {
+        this.jobId = params.id;
+      }
+    });
+  }
 
   ngOnInit() {
     this.createJobForm = this.formBuilder.group({
-      name: '',
+      name: ['', Validators.required],
       arguments: '',
   });
+  this.selectedJob(this.jobId);
+  }
+  selectedJob(id) {
+    this.jobsService.getSelected(id).subscribe((res: any) => {
+      this.createJobForm.patchValue({
+        name: res.name,
+      });
+    });
   }
   navigateToListViewUrl() {
     this.router.navigate(['admin/jobs']);

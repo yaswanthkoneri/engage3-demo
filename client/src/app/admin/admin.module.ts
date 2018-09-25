@@ -12,6 +12,7 @@ import { CreateJobComponent } from './jobs/create-job/create-job.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
+import { DeleteConfirmationComponent } from '../common/delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,9 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     JobsComponent,
     HistoryComponent,
-    CreateJobComponent],
+    CreateJobComponent,
+    DeleteConfirmationComponent],
+    entryComponents: [DeleteConfirmationComponent],
   providers: [],
   bootstrap: [AdminComponent],
   exports: [AdminComponent]

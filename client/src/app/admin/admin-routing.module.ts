@@ -21,6 +21,9 @@ const adminRoutes: Routes = [
           path: 'jobs/createjob', component: CreateJobComponent
         },
         {
+          path: 'jobs/:id', component: CreateJobComponent, pathMatch: 'full'
+        },
+        {
           path: 'history', component: HistoryComponent
         }
     ]}

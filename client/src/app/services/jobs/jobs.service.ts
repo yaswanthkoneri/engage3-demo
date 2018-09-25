@@ -30,5 +30,20 @@ export class JobsService {
       return data;
     }));
   }
+  getSelected(id) {
+    return this.http.get(EndPoint.HOST_URL + 'jobs/' + id).pipe(map( data => {
+      return data;
+    }));
+  }
+  deleteJob(job) {
+    return this.http.delete(EndPoint.HOST_URL + 'jobs/' + job.id).pipe(map( data => {
+      return data;
+    }));
+  }
+  statusOfJob(job, status) {
+    return this.http.patch(EndPoint.HOST_URL + 'jobs/' + job.id, status).pipe(map( data => {
+      return data;
+    }));
+  }
 }
 
