@@ -71,7 +71,6 @@ export class JobsComponent implements OnInit {
      this.run = false;
   }, (error: any) => {
       this.spinner.hide();
-      this.run = true;
     }
     );
   }
