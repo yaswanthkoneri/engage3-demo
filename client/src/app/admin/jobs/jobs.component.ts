@@ -64,7 +64,10 @@ export class JobsComponent implements OnInit {
     });
     this.jobsService.runJob(job).subscribe(data => {
       this.spinner.hide();
-    }, (error: any) => {
+      setTimeout (() => {
+        this.getJobs();
+     }, 3000);
+  }, (error: any) => {
       this.spinner.hide();
     }
     );
