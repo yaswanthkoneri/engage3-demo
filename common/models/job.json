@@ -19,6 +19,10 @@
     },
     "no_of_error_records": {
       "type": "number"
+    },
+    "status":{
+      "type":"string",
+      "default":"CREATED"
     }
   },
   "validations": [],
