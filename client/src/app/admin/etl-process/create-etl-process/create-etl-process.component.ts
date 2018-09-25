@@ -42,7 +42,7 @@ export class CreateEtlProcessComponent implements OnInit {
     const etl = {
        'name': this.createEtlProcessForm.get('name').value,
        'description': this.createEtlProcessForm.get('description').value,
-    'starttime': `${this.createEtlProcessForm.get('starttime').value.getTime()}`
+        'starttime': `${this.createEtlProcessForm.get('starttime').value.toLocaleString()}`
 
     };
     console.log(etl);

@@ -56,7 +56,8 @@ export class JobsComponent implements OnInit {
     this.router.navigate(['admin/jobs/createjob']);
   }
   runjob(job) {
-    const date = new Date().getTime();
+    const date = new Date().toLocaleString();
+    console.log(date);
     const status = {
       'status': 'IN PROGRESS',
       'starttime': `${date}`
