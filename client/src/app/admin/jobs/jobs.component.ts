@@ -24,6 +24,7 @@ export class JobsComponent implements OnInit {
   jobs: any = [];
   loading: boolean;
   pagination = false;
+  run = true;
   constructor(private jobsService: JobsService, private router: Router, private toastr: ToastrService,
     private spinner: NgxSpinnerService, public dialog: MatDialog) { }
   dataSource;
@@ -66,9 +67,11 @@ export class JobsComponent implements OnInit {
       this.spinner.hide();
       setTimeout (() => {
         this.getJobs();
-     }, 3000);
+     }, 4000);
+     this.run = false;
   }, (error: any) => {
       this.spinner.hide();
+      this.run = true;
     }
     );
   }
