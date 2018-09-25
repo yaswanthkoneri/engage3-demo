@@ -1,0 +1,46 @@
+<div class="layout create-etl">
+    <div *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="page-heading mb20" *ngIf="!etlId">Create Job</div>
+    <div class="page-heading mb20" *ngIf="etlId">Update Job</div>
+    <div class="clearfix"></div>
+    <form name="createetlprocessform" [formGroup]="createEtlProcessForm">
+        <div class="grid-container">
+            <div class="grid-item">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Etl process name" formControlName="name" class="form-control" />
+                </mat-form-field>
+            </div>
+            <div class="grid-item">
+                <div class="upload-btn-wrapper">
+                    <button class="btn"><mat-icon  class="pull-left">file_upload</mat-icon> <div class="pull-left">Upload source file</div></button>
+                    <input #fileInput type="file" name="jobfiles" (click)="fileInput.value = null" value="" (change)="uploadFile($event)" />
+                </div>
+                <div *ngIf="fileName">
+                    <div class="pull-left">{{fileName}}</div>
+                </div>
+            </div>
+            <div class="grid-item">
+                <mat-form-field>
+                    <input matInput placeholder="Schedule" id="date" [min]="minDate" name="date" formControlName="starttime" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" [disabled]="readOnly"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi="true" [disabled]="disableDate" #picker1></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="grid-item">
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Description" formControlName="description" class="form-control" />
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="row">
+            <span class="fill-space"></span>
+
+            <button mat-button class="mr20 btn-cancel" (click)="navigateToListViewUrl()">Cancel</button>
+            <button mat-button class="btn-create" (click)="createetl()" *ngIf="!etlId">Create ETL Process</button>
+            <button mat-button class="btn-create" (click)="updateetl()" *ngIf="etlId">Update  ETL Process</button>
+        </div>
+    </form>
+</div>

@@ -187,3 +187,40 @@ input.mat-input-element {
     overflow: auto;
     width: 100%;
 }
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    .btn {
+        border: 0;
+        color: #8b8b8b;
+        background-color: white;
+        padding: 8px 20px 11px 0;
+        border-radius: 0;
+        font-size: 17px;
+        border-bottom: 1px solid #a8a8a8;
+        width: 100%;
+        text-align: left;
+    }
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+}
+
+.mat-datepicker-content-touch .mat-calendar {
+    width: 296px!important;
+    height: 354px!important;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0;
+}
+
+input.mat-input-element {
+    width: 80%;
+}

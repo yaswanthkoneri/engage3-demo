@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute} from '@angular/router';
 import { JobsService } from '../../../services/jobs/jobs.service';
+import { EtlProcessService } from '../../../services/etlprocess/etl-process.service';
 @Component({
   selector: 'app-create-job',
   templateUrl: './create-job.component.html',
@@ -12,8 +13,10 @@ export class CreateJobComponent implements OnInit {
   formData: FormData = new FormData();
   fileName: String ;
   fileDetails: any;
-  jobId: any;
-  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService, private route: ActivatedRoute) { 
+  etllist = [];
+  jobId: number;
+  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService, private route: ActivatedRoute,
+    private etlProcessService: EtlProcessService) {
     this.route.params.subscribe( params => {
       if (params) {
         this.jobId = params.id;
@@ -24,9 +27,19 @@ export class CreateJobComponent implements OnInit {
   ngOnInit() {
     this.createJobForm = this.formBuilder.group({
       name: ['', Validators.required],
-      arguments: '',
+      etlprocess: '',
   });
+  if (this.jobId) {
   this.selectedJob(this.jobId);
+
+  }
+  this.getEtllist();
+  }
+  getEtllist() {
+    this.etlProcessService.etls().pipe().subscribe(data => {
+      console.log(data);
+      this.etllist = data;
+    });
   }
   selectedJob(id) {
     this.jobsService.getSelected(id).subscribe((res: any) => {
@@ -71,7 +84,7 @@ export class CreateJobComponent implements OnInit {
   }
   updatejob() {
     const job = {
-      'id': this.jobId,
+      'id': +this.jobId,
       'name': this.createJobForm.get('name').value
     };
     this.jobsService.createJob(job).subscribe((res: any) => {

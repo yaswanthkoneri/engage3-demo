@@ -14,18 +14,22 @@
             </div>
             <div class="grid-item">
                 <div class="upload-btn-wrapper">
-                    <button class="btn"><mat-icon  class="pull-left">file_upload</mat-icon> <div class="pull-left">Upload a file</div></button>
+                    <button class="btn"><mat-icon  class="pull-left">file_upload</mat-icon> <div class="pull-left">Upload source file</div></button>
                     <input #fileInput type="file" name="jobfiles" (click)="fileInput.value = null" value="" (change)="uploadFile($event)" />
                 </div>
                 <div *ngIf="fileName">
                     <div class="pull-left">{{fileName}}</div>
                 </div>
             </div>
-            <!-- <div class="grid-item">
+            <div class="grid-item">
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Arguments" formControlName="arguments" class="form-control" />
+                    <mat-select placeholder="Select ETL Process" formControlName="etlprocess">
+                        <mat-option *ngFor="let etl of etllist;let i = index" [value]="etl.id">
+                            {{etl.name}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
-            </div> -->
+            </div>
         </div>
         <div class="row">
             <span class="fill-space"></span>

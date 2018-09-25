@@ -56,8 +56,10 @@ export class JobsComponent implements OnInit {
     this.router.navigate(['admin/jobs/createjob']);
   }
   runjob(job) {
+    const date = new Date().getTime();
     const status = {
-      'status': 'IN PROGRESS'
+      'status': 'IN PROGRESS',
+      'starttime': `${date}`
     };
     this.spinner.show();
     this.jobsService.statusOfJob(job, status).subscribe(data => {

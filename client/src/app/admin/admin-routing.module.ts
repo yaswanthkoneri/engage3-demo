@@ -5,6 +5,8 @@ import { AdminComponent } from './admin.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { HistoryComponent } from './history/history.component';
 import { CreateJobComponent } from './jobs/create-job/create-job.component';
+import { EtlProcessComponent } from './etl-process/etl-process.component';
+import { CreateEtlProcessComponent } from './etl-process/create-etl-process/create-etl-process.component';
 
 const adminRoutes: Routes = [
   {
@@ -25,6 +27,12 @@ const adminRoutes: Routes = [
         },
         {
           path: 'history', component: HistoryComponent
+        },
+        {
+          path: 'etlprocess', component: EtlProcessComponent
+        },
+        {
+          path: 'etlprocess/createEtlprocess', component: CreateEtlProcessComponent
         }
     ]}
   // {
