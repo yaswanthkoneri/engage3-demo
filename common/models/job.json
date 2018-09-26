@@ -28,10 +28,10 @@
       "default": "CREATED"
     },
     "starttime": {
-      "type": "number"
+      "type": "any"
     },
     "endtime": {
-      "type": "number"
+      "type": "any"
     }
   },
   "validations": [],
