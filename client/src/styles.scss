@@ -104,6 +104,18 @@ button {
     padding: 5px;
 }
 
+.btn-edit {
+    background-color: #EE8A00;
+    color: #fff;
+    padding: 5px;
+}
+
+.btn-delete {
+    background-color: rgb(155, 13, 36);
+    color: #fff;
+    padding: 5px;
+}
+
 .mr20 {
     margin-right: 20px!important;
 }
@@ -133,9 +145,17 @@ input.mat-input-element {
 
 .my-table {
     border: 1px solid #EFEFEF;
-    font-size: 16px;
+    td.mat-cell {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
     .mat-header-cell {
-        font-size: 16px;
+        font-size: 14px;
+        padding: 10px 15px;
+        font-weight: bold;
+        .mat-sort-header-button {
+            text-align: left;
+        }
     }
     tr:nth-child(even) {
         background-color: #fbfbfb;
@@ -166,4 +186,41 @@ input.mat-input-element {
 .table-set {
     overflow: auto;
     width: 100%;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    .btn {
+        border: 0;
+        color: #8b8b8b;
+        background-color: white;
+        padding: 8px 20px 11px 0;
+        border-radius: 0;
+        font-size: 17px;
+        border-bottom: 1px solid #a8a8a8;
+        width: 100%;
+        text-align: left;
+    }
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+}
+
+.mat-datepicker-content-touch .mat-calendar {
+    width: 296px!important;
+    height: 354px!important;
+}
+
+.search-icon {
+    position: absolute;
+    right: 0;
+}
+
+input.mat-input-element {
+    width: 80%;
 }

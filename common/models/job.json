@@ -32,6 +32,10 @@
     },
     "endtime": {
       "type": "date"
+    },
+    "status":{
+      "type":"string",
+      "default":"CREATED"
     }
   },
   "validations": [],

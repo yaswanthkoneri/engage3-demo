@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router} from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 import { JobsService } from '../../../services/jobs/jobs.service';
+import { EtlProcessService } from '../../../services/etlprocess/etl-process.service';
 @Component({
   selector: 'app-create-job',
   templateUrl: './create-job.component.html',
@@ -12,13 +13,40 @@ export class CreateJobComponent implements OnInit {
   formData: FormData = new FormData();
   fileName: String ;
   fileDetails: any;
-  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService) { }
+  etllist = [];
+  jobId: number;
+  constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService, private route: ActivatedRoute,
+    private etlProcessService: EtlProcessService) {
+    this.route.params.subscribe( params => {
+      if (params) {
+        this.jobId = params.id;
+      }
+    });
+  }
 
   ngOnInit() {
     this.createJobForm = this.formBuilder.group({
-      name: '',
-      arguments: '',
+      name: ['', Validators.required],
+      etlprocess: '',
   });
+  if (this.jobId) {
+  this.selectedJob(this.jobId);
+
+  }
+  this.getEtllist();
+  }
+  getEtllist() {
+    this.etlProcessService.etls().pipe().subscribe(data => {
+      console.log(data);
+      this.etllist = data;
+    });
+  }
+  selectedJob(id) {
+    this.jobsService.getSelected(id).subscribe((res: any) => {
+      this.createJobForm.patchValue({
+        name: res.name,
+      });
+    });
   }
   navigateToListViewUrl() {
     this.router.navigate(['admin/jobs']);
@@ -54,4 +82,20 @@ export class CreateJobComponent implements OnInit {
 
     );
   }
+  updatejob() {
+    const job = {
+      'id': +this.jobId,
+      'name': this.createJobForm.get('name').value
+    };
+    this.jobsService.createJob(job).subscribe((res: any) => {
+      console.log(res);
+      const createdjob = res;
+    this.router.navigate(['admin/jobs']);
+
+      this.jobsService.jobFileUpload(this.formData, createdjob).subscribe((data: any) => {
+        });
+    }, (error: any) => {
+      console.log(error);
+    });
+}
 }

@@ -1,6 +1,6 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     grid-gap: 20px;
     @media (max-width: 768px) {
         grid-template-columns: auto;
@@ -15,4 +15,9 @@
     @media (max-width: 768px) {
         height: 70px;
     }
+}
+
+.mat-dialog-container {
+    width: 296px!important;
+    height: 354px!important;
 }

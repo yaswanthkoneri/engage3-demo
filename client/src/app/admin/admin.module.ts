@@ -12,6 +12,9 @@ import { CreateJobComponent } from './jobs/create-job/create-job.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
+import { DeleteConfirmationComponent } from '../common/delete-confirmation/delete-confirmation.component';
+import { EtlProcessComponent } from './etl-process/etl-process.component';
+import { CreateEtlProcessComponent } from './etl-process/create-etl-process/create-etl-process.component';
 
 @NgModule({
   imports: [
@@ -31,7 +34,11 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     JobsComponent,
     HistoryComponent,
-    CreateJobComponent],
+    CreateJobComponent,
+    DeleteConfirmationComponent,
+    EtlProcessComponent,
+    CreateEtlProcessComponent],
+    entryComponents: [DeleteConfirmationComponent],
   providers: [],
   bootstrap: [AdminComponent],
   exports: [AdminComponent]
