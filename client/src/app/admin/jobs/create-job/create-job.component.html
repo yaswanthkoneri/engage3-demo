@@ -23,8 +23,8 @@
             </div>
             <div class="grid-item">
                 <mat-form-field>
-                    <mat-select placeholder="Select ETL Process" formControlName="etlprocess">
-                        <mat-option *ngFor="let etl of etllist;let i = index" [value]="etl.id">
+                    <mat-select placeholder="Select ETL Process" formControlName="etl_name">
+                        <mat-option *ngFor="let etl of etllist;let i = index" [value]="etl.name">
                             {{etl.name}}
                         </mat-option>
                     </mat-select>

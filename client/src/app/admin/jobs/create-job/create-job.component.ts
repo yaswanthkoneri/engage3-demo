@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute} from '@angular/router';
 import { JobsService } from '../../../services/jobs/jobs.service';
 import { EtlProcessService } from '../../../services/etlprocess/etl-process.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-create-job',
   templateUrl: './create-job.component.html',
@@ -12,11 +13,10 @@ export class CreateJobComponent implements OnInit {
   createJobForm: FormGroup;
   formData: FormData = new FormData();
   fileName: String ;
-  fileDetails: any;
   etllist = [];
   jobId: number;
   constructor( private formBuilder: FormBuilder, private router: Router, private jobsService: JobsService, private route: ActivatedRoute,
-    private etlProcessService: EtlProcessService) {
+    private etlProcessService: EtlProcessService, private toastr: ToastrService) {
     this.route.params.subscribe( params => {
       if (params) {
         this.jobId = params.id;
@@ -27,7 +27,7 @@ export class CreateJobComponent implements OnInit {
   ngOnInit() {
     this.createJobForm = this.formBuilder.group({
       name: ['', Validators.required],
-      etlprocess: '',
+      etl_name: '',
   });
   if (this.jobId) {
   this.selectedJob(this.jobId);
@@ -45,6 +45,7 @@ export class CreateJobComponent implements OnInit {
     this.jobsService.getSelected(id).subscribe((res: any) => {
       this.createJobForm.patchValue({
         name: res.name,
+        etl_name: res.etl_name
       });
     });
   }
@@ -53,9 +54,9 @@ export class CreateJobComponent implements OnInit {
   }
   uploadFile(fileInput: any) {
     if (event) {
-      this.fileDetails = <File>fileInput.target.files[0];
-      // this.formData.append('file', fileDetails);
-      this.fileName = this.fileDetails.name;
+      const fileDetails = <File>fileInput.target.files[0];
+      this.formData.append('file', fileDetails);
+      this.fileName = fileDetails.name;
      // for (let i = 0; i < fileDetails.length; i++) {
       //   this.formData.append('files', fileDetails[i]);
       //   this.fileName = fileDetails[i].name;
@@ -68,35 +69,38 @@ export class CreateJobComponent implements OnInit {
   createjob() {
     const job = this.createJobForm.value;
     console.log(job);
-    this.formData.append('file', this.fileDetails);
+    if (this.fileName) {
     this.jobsService.createJob(job).subscribe((res: any) => {
       console.log(res);
       const createdjob = res;
     this.router.navigate(['admin/jobs']);
-
-      this.jobsService.jobFileUpload(this.formData, createdjob).subscribe((data: any) => {
+    this.jobsService.jobFileUpload(this.formData, createdjob).subscribe((data: any) => {
         });
-    }, (error: any) => {
+      }, (error: any) => {
       console.log(error);
-    }
-
-    );
+    });
+  } else {
+    this.toastr.warning('Please upload source file to create job');
+  }
   }
   updatejob() {
     const job = {
       'id': +this.jobId,
-      'name': this.createJobForm.get('name').value
+      'name': this.createJobForm.get('name').value,
+      'etl_name': this.createJobForm.get('etl_name').value
     };
-    this.formData.append('file', this.fileDetails);
+    if (this.fileName) {
     this.jobsService.updateJob(job).subscribe((res: any) => {
       console.log(res);
       const createdjob = res;
     this.router.navigate(['admin/jobs']);
-
-      this.jobsService.jobFileUploadupdate(this.formData, createdjob).subscribe((data: any) => {
-        });
+    this.jobsService.jobFileUploadupdate(this.formData, createdjob).subscribe((data: any) => {
+      });
     }, (error: any) => {
       console.log(error);
     });
+  } else {
+    this.toastr.warning('Please upload source file to update job');
+  }
 }
 }
