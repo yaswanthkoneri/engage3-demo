@@ -37,6 +37,7 @@ function readFile(srcPath) {
   return new Promise(function (resolve, reject) {
       fs.readFile(srcPath, 'utf8', function (err, data) {
           if (err) {
+              console.error(err)
               reject(err)
           } else {
               resolve(data);
@@ -49,6 +50,7 @@ function writeFile(savPath, data) {
   return new Promise(function (resolve, reject) {
       fs.writeFile(savPath, data, function (err) {
           if (err) {
+              console.error(err);
               reject(err)
           } else {
               resolve();
@@ -60,7 +62,9 @@ function writeFile(savPath, data) {
 app.route('/api/jobs/fileupload').post(function(req,res){
   var form = new IncomingForm();
   form.parse(req,function(err,fields,files){
-      if (err) throw err;
+      if (err) {
+          console.error(err);
+      }
       var data = JSON.stringify(files.file)
       var b = JSON.parse(data)
       var oldpath = b.path
@@ -77,7 +81,10 @@ app.route('/api/jobs/fileupload').post(function(req,res){
 app.route('/api/jobs/fileupload').put(function(req,res){
     var form = new IncomingForm();
     form.parse(req,function(err,fields,files){
-        if (err) throw err;
+        if (err){
+            console.error(err);
+            // res.json({"status":"error","message":new Error(err)})
+        } 
         var data = JSON.stringify(files.file)
         var b = JSON.parse(data)
         var oldpath = b.path
@@ -85,7 +92,7 @@ app.route('/api/jobs/fileupload').put(function(req,res){
         readFile(oldpath).then(function(results){
           return writeFile(newpath,results);
         }).then(function(){
-          res.json({"status":"success","message":"file uploaded successfully"})
+          res.json({"status":"success","message":"file updated successfully"})
        })
     })
 })
@@ -93,8 +100,11 @@ app.route('/api/jobs/fileupload').put(function(req,res){
 app.route('/api/etls/fileupload').post(function(req,res){
     var form = new IncomingForm();
     form.parse(req,function(err,fields,files){
-        if (err) throw err;
-        console.log(files)
+        if (err) {
+            console.error(err);
+            // res.json({})
+        }
+        console.log(`inside form parse`)
         var data = JSON.stringify(files.file)
         var b = JSON.parse(data)
         var oldpath = b.path
@@ -104,8 +114,9 @@ app.route('/api/etls/fileupload').post(function(req,res){
         readFile(oldpath).then(function(results){
           return writeFile(newpath,results);
         }).then(function(){
+            console.log(`written jar file upload successfull`)
           //done writing file, can do other things
-          res.json({"status":"success","message":"file uploaded successfully"})
+          res.json({"status":"success","message":"jar file uploaded successfully"})
        })
     })
 })
