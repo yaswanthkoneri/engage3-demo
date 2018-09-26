@@ -224,3 +224,9 @@ input.mat-input-element {
 input.mat-input-element {
     width: 80%;
 }
+
+.job-layout {
+    .mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+        height: 44px!important;
+    }
+}
