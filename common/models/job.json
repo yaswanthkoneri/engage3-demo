@@ -11,6 +11,9 @@
       "type": "string",
       "required": true
     },
+    "etl_name":{
+      "type":"string"
+    },
     "no_of_input_records": {
       "type": "number",
       "default":0
