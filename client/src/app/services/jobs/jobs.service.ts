@@ -20,8 +20,19 @@ export class JobsService {
     }
     ));
   }
+  updateJob(job) {
+    return this.http.patch(EndPoint.HOST_URL + 'jobs' , job).pipe(map( data => {
+      return data;
+    }
+    ));
+  }
   jobFileUpload(formdata, res) {
     return this.http.post(`${EndPoint.HOST_URL}jobs/fileupload?id=${res.id}`, formdata).pipe(map(data => {
+      return data;
+    }));
+  }
+  jobFileUploadupdate(formdata, res) {
+    return this.http.put(`${EndPoint.HOST_URL}jobs/fileupload?id=${res.id}`, formdata).pipe(map(data => {
       return data;
     }));
   }

@@ -87,12 +87,13 @@ export class CreateJobComponent implements OnInit {
       'id': +this.jobId,
       'name': this.createJobForm.get('name').value
     };
-    this.jobsService.createJob(job).subscribe((res: any) => {
+    this.formData.append('file', this.fileDetails);
+    this.jobsService.updateJob(job).subscribe((res: any) => {
       console.log(res);
       const createdjob = res;
     this.router.navigate(['admin/jobs']);
 
-      this.jobsService.jobFileUpload(this.formData, createdjob).subscribe((data: any) => {
+      this.jobsService.jobFileUploadupdate(this.formData, createdjob).subscribe((data: any) => {
         });
     }, (error: any) => {
       console.log(error);
