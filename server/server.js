@@ -68,9 +68,46 @@ app.route('/api/jobs/fileupload').post(function(req,res){
       readFile(oldpath).then(function(results){
         return writeFile(newpath,results);
       }).then(function(){
+        res.json({"status":"success","message":"file uploaded successfully"})
         //done writing file, can do other things
      })
   })
+})
+
+app.route('/api/jobs/fileupload').put(function(req,res){
+    var form = new IncomingForm();
+    form.parse(req,function(err,fields,files){
+        if (err) throw err;
+        var data = JSON.stringify(files.file)
+        var b = JSON.parse(data)
+        var oldpath = b.path
+        var newpath = `${__dirname}/data/${req.query.id}.csv`
+        readFile(oldpath).then(function(results){
+          return writeFile(newpath,results);
+        }).then(function(){
+          res.json({"status":"success","message":"file uploaded successfully"})
+       })
+    })
+})
+
+app.route('/api/etls/fileupload').post(function(req,res){
+    var form = new IncomingForm();
+    form.parse(req,function(err,fields,files){
+        if (err) throw err;
+        console.log(files)
+        var data = JSON.stringify(files.file)
+        var b = JSON.parse(data)
+        var oldpath = b.path
+        console.log(oldpath)
+        var newpath = `${__dirname}/data/config/${req.query.id}.jar`
+        console.log(newpath)
+        readFile(oldpath).then(function(results){
+          return writeFile(newpath,results);
+        }).then(function(){
+          //done writing file, can do other things
+          res.json({"status":"success","message":"file uploaded successfully"})
+       })
+    })
 })
 
 app.route('/download/:id').get(function(req, res){
@@ -111,3 +148,5 @@ app.route('/api/run/:id').get(function(req, res) {
     // })
     // res.json({"status":"success"});
   });
+
+  

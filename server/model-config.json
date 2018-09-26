@@ -15,7 +15,7 @@
   },
   "User": {
     "dataSource": "db",
-    "public":true
+    "public": true
   },
   "AccessToken": {
     "dataSource": "db",
@@ -41,6 +41,10 @@
     "public": true
   },
   "houses": {
+    "dataSource": "db",
+    "public": true
+  },
+  "etl": {
     "dataSource": "db",
     "public": true
   }

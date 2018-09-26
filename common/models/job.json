@@ -12,13 +12,26 @@
       "required": true
     },
     "no_of_input_records": {
-      "type": "number"
+      "type": "number",
+      "default":0
     },
     "no_of_output_records": {
-      "type": "number"
+      "type": "number",
+      "default":0
     },
     "no_of_error_records": {
-      "type": "number"
+      "type": "number",
+      "default":0
+    },
+    "status": {
+      "type": "string",
+      "default": "CREATED"
+    },
+    "starttime": {
+      "type": "date"
+    },
+    "endtime": {
+      "type": "date"
     },
     "status":{
       "type":"string",

@@ -1,6 +1,6 @@
 {
-  "name": "houses",
-  "plural": "houses",
+  "name": "etl",
+  "plural": "etls",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,11 +11,8 @@
       "type": "string",
       "required": true
     },
-    "price": {
-      "type": "number"
-    },
-    "area": {
-      "type": "number"
+    "description": {
+      "type": "string"
     }
   },
   "validations": [],
