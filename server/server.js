@@ -68,6 +68,11 @@ app.route('/api/jobs/fileupload').post(function(req,res){
       var data = JSON.stringify(files.file)
       var b = JSON.parse(data)
       var oldpath = b.path
+      if (!b || !b.path){
+        console.error("something went wrong");
+        res.json({"status":"error","message":"something went wrong"});
+        return;
+      }
       var newpath = `${__dirname}/data/${req.query.id}.csv`
       readFile(oldpath).then(function(results){
         return writeFile(newpath,results);
@@ -88,6 +93,11 @@ app.route('/api/jobs/fileupload').put(function(req,res){
         var data = JSON.stringify(files.file)
         var b = JSON.parse(data)
         var oldpath = b.path
+        if (!b || !b.path){
+            console.error("something went wrong");
+            res.json({"status":"error","message":"something went wrong"});
+            return;
+        }
         var newpath = `${__dirname}/data/${req.query.id}.csv`
         readFile(oldpath).then(function(results){
           return writeFile(newpath,results);
@@ -108,6 +118,11 @@ app.route('/api/etls/fileupload').post(function(req,res){
         var data = JSON.stringify(files.file)
         var b = JSON.parse(data)
         var oldpath = b.path
+        if (!b || !b.path){
+            console.error("something went wrong");
+            res.json({"status":"error","message":"something went wrong"});
+            return;
+        }
         console.log(oldpath)
         var newpath = `${__dirname}/data/config/${req.query.id}.jar`
         console.log(newpath)
