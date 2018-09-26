@@ -25,6 +25,7 @@ export class JobsComponent implements OnInit {
   loading: boolean;
   pagination = false;
   run = true;
+  endtime: number;
   constructor(private jobsService: JobsService, private router: Router, private toastr: ToastrService,
     private spinner: NgxSpinnerService, public dialog: MatDialog) { }
   dataSource;
@@ -56,12 +57,14 @@ export class JobsComponent implements OnInit {
     this.router.navigate(['admin/jobs/createjob']);
   }
   runjob(job) {
-    const date = new Date().toLocaleString();
+    const date = new Date().getTime();
     console.log(date);
     const status = {
       'status': 'IN PROGRESS',
-      'starttime': `${date}`
+      'starttime': date,
+      'endtime': this.endtime
     };
+    console.log(status);
     this.spinner.show();
     this.jobsService.statusOfJob(job, status).subscribe(data => {
       this.getJobs();
