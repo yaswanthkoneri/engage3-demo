@@ -2,8 +2,8 @@
     <div *ngIf="loading">
         <mat-spinner></mat-spinner>
     </div>
-    <div class="page-heading mb20" *ngIf="!etlId">Create Job</div>
-    <div class="page-heading mb20" *ngIf="etlId">Update Job</div>
+    <div class="page-heading mb20" *ngIf="!etlId">Create ETL Process</div>
+    <div class="page-heading mb20" *ngIf="etlId">Update ETL Process</div>
     <div class="clearfix"></div>
     <form name="createetlprocessform" [formGroup]="createEtlProcessForm">
         <div class="grid-container">
@@ -15,7 +15,7 @@
             <div class="grid-item">
                 <div class="upload-btn-wrapper">
                     <button class="btn"><mat-icon  class="pull-left">file_upload</mat-icon> <div class="pull-left">Upload source file</div></button>
-                    <input #fileInput type="file" name="jobfiles" (click)="fileInput.value = null" value="" (change)="uploadFile($event)" />
+                    <input #fileInput type="file" name="etlfiles" (click)="fileInput.value = null" value="" (change)="uploadFile($event)" />
                 </div>
                 <div *ngIf="fileName">
                     <div class="pull-left">{{fileName}}</div>
